@@ -1,0 +1,146 @@
+<html>
+<head>
+    <title>OklmZer</title>
+    <style type="text/css">
+        body {
+            padding: 20px;
+            padding-top: 14px;
+            margin: 0 !important;
+            overflow: hidden;
+            font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+            color: #5a5a5a;
+            background: transparent;
+        }
+
+        .container {
+            position: relative;
+            background: #ededed;
+            border: 1px solid #b3b4b0;
+            width: 100%;
+            height: 90%;
+            margin: auto;
+
+            box-shadow: 0px 0px 8px 0px rgba(121,121,121,0.3),-.3px 0 0 #818181;
+            -webkit-border-radius: 10px;
+        }
+        /* Make an arrow */
+        .arrow {
+            background-color: #ededed;
+            box-shadow: 0px 0px 8px 0px rgba(121,121,121,0.3),-.3px 0 0 #818181,-.3px 0 0 #818181,-.3px 0 0 #818181;
+            border-radius: 3px;
+            width: 22px;
+            height: 22px;
+
+            /* Translate the box up by width / 2 then rotate */
+            -webkit-transform: translateY(-15px) rotate(45deg);
+            position: absolute;
+            top: 5px;
+            left: calc(50% - 11px)
+        }
+        .arrow-hide {
+            background-color: #ededed;
+            width: 60px;
+            height: 30px;
+            position: absolute;
+            top: 0px;
+            left: calc(50% - 30px)
+        }
+
+        .top-container {
+            height: 12%;
+            border-bottom: 1px solid #CCCCCC;
+            position: relative
+        }
+
+        .top-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 33px;
+            font-size: 12px;
+        }
+
+        .main-container {
+            height: 80%;
+            background: #fcfcfc;
+            overflow: scroll;
+        }
+
+        .main-container #logo, .main-container #toggle_button {
+            text-align: center;
+        }
+
+        .bottom-container {
+            height: 8%;
+            border-top: 1px solid #CCCCCC;
+            position: relative;
+        }
+
+        .bottom-credits {
+            font-size: 11px;
+            position: absolute;
+            top: 2px;
+            left: 10px;
+        }
+
+        .bottom-credits img {
+            width: 74px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .bottom-credits span {
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="arrow"></div>
+    <div class="arrow-hide"></div>
+
+    <div class="top-container">
+        <div class="top-content">
+            OKLM Radio
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div id="logo"><img src="./img/logo.png" width="50%"></div>
+        <div id="toggle_button"><img src="./img/pause_btn.png" id="btn_img" width="30%" alt=""></div>
+        <video controls="" autoplay="" name="media" id="radio" style="display:none"><source src="http://oklm.radioking.fr/radio/3093" type="audio/mpeg"></video>
+    </div>
+
+    <div class="bottom-container">
+
+        <div class="bottom-credits">
+            <span>Powered by Genesor</span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    document.addEventListener('mousewheel', function(e) {
+        if(e.deltaY % 1 !== 0) {
+            e.preventDefault();
+        }
+    });
+
+    document.getElementById("toggle_button").onclick = toggle_radio;
+
+    function toggle_radio() {
+        var player = document.getElementById("radio");
+        var img = document.getElementById("btn_img");
+        if (player.paused == false) {
+            player.pause();
+            img.src = "./img/play_btn.jpg";
+        } else {
+            player.play();
+            img.src = "./img/pause_btn.png";
+        }
+    }
+</script>
+</body>
+</html>
